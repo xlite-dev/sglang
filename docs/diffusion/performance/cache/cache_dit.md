@@ -130,7 +130,17 @@ parallelism_config:
     attention_backend: native
     extra_parallel_modules: ["text_encoder", "vae"]
 ```
+
 Then, apply the hybrid cache and parallel acceleration config from yaml.
+
+```bash
+sglang generate \
+  --backend diffusers \
+  --num-gpus 4 \
+  --model-path Qwen/Qwen-Image \
+  --cache-dit-config hybrid.yaml \
+  --prompt "A beautiful sunset over the mountains"
+```
 
 ## Advanced Configuration
 
@@ -251,14 +261,6 @@ SGLang Diffusion x Cache-DiT supports almost all models originally supported in 
 - **Model support**: Only models registered in Cache-DiT's BlockAdapterRegister are supported
 
 ## Troubleshooting
-
-### Distributed environment warning
-
-```
-WARNING: cache-dit is disabled in distributed environment (world_size=N)
-```
-
-This is expected behavior. Cache-DiT currently only supports single-GPU inference.
 
 ### SCM disabled for low step count
 
