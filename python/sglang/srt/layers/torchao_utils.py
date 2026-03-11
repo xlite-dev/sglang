@@ -57,7 +57,8 @@ def apply_torchao_config_to_model(
             quantize_,
         )
     except ImportError:
-        # After v0.15.0, torchao removed config functions like int4_weight_only.
+        # After v0.15.0, torchao removed config functions like 'int4_weight_only'.
+        # We have to use the config class directly, e.g, 'Int4WeightOnlyConfig'.
         # Reference: https://github.com/pytorch/ao/releases/tag/v0.15.0
         from torchao.quantization import (
             Float8DynamicActivationFloat8WeightConfig as float8_dynamic_activation_float8_weight,
