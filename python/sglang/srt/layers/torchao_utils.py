@@ -46,14 +46,27 @@ def apply_torchao_config_to_model(
         return model
 
     # Lazy import to suppress some warnings
-    from torchao.quantization import (
-        float8_dynamic_activation_float8_weight,
-        float8_weight_only,
-        int4_weight_only,
-        int8_dynamic_activation_int8_weight,
-        int8_weight_only,
-        quantize_,
-    )
+    try:
+        from torchao.quantization import (
+            float8_dynamic_activation_float8_weight,
+            float8_weight_only,
+            int4_weight_only,
+            int8_dynamic_activation_int8_weight,
+            int8_weight_only,
+            quantize_,
+        )
+    except ImportError:
+        # After v0.15.0, torchao removed config functions like int4_weight_only.
+        # Reference: https://github.com/pytorch/ao/releases/tag/v0.15.0
+        from torchao.quantization import (
+            Float8DynamicActivationFloat8WeightConfig as float8_dynamic_activation_float8_weight,
+            Float8WeightOnlyConfig as float8_weight_only,
+            Int4WeightOnlyConfig as int4_weight_only,
+            Int8DynamicActivationInt8WeightConfig as int8_dynamic_activation_int8_weight,
+            Int8WeightOnlyConfig as int8_weight_only,
+            quantize_,
+        )
+
     from torchao.quantization.observer import PerRow, PerTensor
 
     if "int8wo" in torchao_config:
