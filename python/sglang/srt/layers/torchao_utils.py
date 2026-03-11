@@ -47,6 +47,7 @@ def apply_torchao_config_to_model(
 
     # Lazy import to suppress some warnings
     try:
+        # Before v0.15.0, we can import the config functions directly.
         from torchao.quantization import (
             float8_dynamic_activation_float8_weight,
             float8_weight_only,
