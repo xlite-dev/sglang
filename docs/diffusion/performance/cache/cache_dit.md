@@ -70,6 +70,7 @@ cache_config:
   taylorseer_order: 1
   # Must set the num_inference_steps for SCM. The SCM will automatically
   # generate the steps computation mask based on the num_inference_steps.
+  # Reference: https://cache-dit.readthedocs.io/en/latest/user_guide/CACHE_API/#scm-steps-computation-masking
   num_inference_steps: 28
   steps_computation_mask: fast
 ```
