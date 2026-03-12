@@ -231,7 +231,7 @@ attention_backend: "flash" # '_flash_3' for Hopper
 
 ### Quantization
 
-You can also specify the quantization config in the yaml file. For example, define a yaml file `quantize.yaml` that contains:
+You can also specify the quantization config in the yaml file, required `torchao>=0.16.0`. For example, define a yaml file `quantize.yaml` that contains:
 
 ```yaml
 quantize_config: # quantization configuration for transformer modules
