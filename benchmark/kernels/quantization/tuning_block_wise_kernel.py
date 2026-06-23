@@ -382,7 +382,10 @@ def tune_on_gpu(args_dict):
 
     search_space = get_configs_compute_bound()
     search_space = [
-        config for config in search_space if block_k % config["BLOCK_SIZE_K"] == 0
+        config
+        for config in search_space
+        if block_k % config["BLOCK_SIZE_K"] == 0
+        and config["BLOCK_SIZE_K"] >= block_k
     ]
 
     start = time.perf_counter()
